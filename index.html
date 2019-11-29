@@ -1,0 +1,65 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+
+
+<body>
+	<div class="container">
+		<div><span>FizzNum</span><input class="js-input-fizznum"id="js-input-fizznum" type="text" value=""></div>
+		<div><span>BuzzNum</span> <input class="js-input-buzznum" id="js-input-buzznum"  type="text" value=""></div>
+		<button class="js-submit" id="js-submit">実行</button>
+	</div>
+	<div>
+		<p>【出力】</p>
+		<div id="js-print">整数値を入力してください</div>
+	</div>
+</body>
+<script>
+	const execBtn = document.getElementById('js-submit');
+
+execBtn.addEventListener('click', event => {
+	let fizznum ='';
+	let buzznum ='';
+	let sumfizz ='';
+	const paragraph = document.getElementById("js-print");
+	const fizznumInput = document.getElementById("js-input-fizznum");
+	const buzznumInput = document.getElementById("js-input-buzznum");
+
+	if (fizznumInput.value.replace(/[ 　]/g, '') && !isNaN(fizznumInput.value)){
+
+		if (buzznumInput.value.replace(/[ 　]/g, '') && !isNaN(buzznumInput.value)){
+			fizznum = fizznumInput.value;
+			buzznum = buzznumInput.value;
+
+			while (String(buzznum).length < 3 || String(fizznum).length < 3) {
+				if (String(buzznum * 2).length < 3 || String(fizznum * 2).length < 3){
+					if ((buzznum * 2) == (fizznum * 2)){
+						sumfizz += ('<p>' + "FizzBuzz　" + (fizznum * 2) + '</p>');
+					} else {
+						sumfizz += ('<p>' + "FizzNum　" + (fizznum * 2) + '</p>');
+						sumfizz += ('<p>' + "BuzzNum　" + (buzznum * 2) + '</p>');
+					}
+					fizznum = fizznum * 2;
+					buzznum = buzznum * 2;
+				}else{
+					break;
+				}
+			};
+			paragraph.innerHTML = sumfizz;
+
+		} else {
+			paragraph.innerHTML = '数値以外が入力されています。';
+		}
+
+
+	}else{
+			paragraph.innerHTML = '数値以外が入力されています。';
+	}
+
+});
+
+</script>
+</html>
